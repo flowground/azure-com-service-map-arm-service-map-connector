@@ -1,0 +1,58 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "pattern": "[a-zA-Z0-9_-]+"
+        },
+        "workspaceName": {
+            "required": true,
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 63,
+            "pattern": "[a-zA-Z0-9_][a-zA-Z0-9_-]+[a-zA-Z0-9_]"
+        },
+        "requestBody": {
+            "description": "Specifies the contents of request to generate a map.",
+            "discriminator": {
+                "propertyName": "kind"
+            },
+            "properties": {
+                "endTime": {
+                    "description": "Map interval end time.",
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "kind": {
+                    "description": "The type of map to create.",
+                    "enum": [
+                        "map:single-machine-dependency",
+                        "map:machine-group-dependency",
+                        "map:machine-list-dependency"
+                    ],
+                    "type": "string"
+                },
+                "startTime": {
+                    "description": "Map interval start time.",
+                    "format": "date-time",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "kind"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

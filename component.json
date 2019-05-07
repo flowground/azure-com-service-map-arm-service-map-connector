@@ -1,0 +1,475 @@
+{
+    "title": "Service Map",
+    "description": "Service Map API Reference",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/service-map-arm-service-map/2015-11-01-preview/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://management.azure.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Azure Active Directory OAuth2 Flow",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "ClientGroups_Get": {
+            "main": "./lib/actions/ClientGroups_Get.js",
+            "title": "Retrieves the specified client group",
+            "description": "Retrieves the specified client group",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ClientGroups_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ClientGroups_ListMembers": {
+            "main": "./lib/actions/ClientGroups_ListMembers.js",
+            "title": "Returns the members of the client group during the specified time interval.",
+            "description": "Returns the members of the client group during the specified time interval.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ClientGroups_ListMembers.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ClientGroups_GetMembersCount": {
+            "main": "./lib/actions/ClientGroups_GetMembersCount.js",
+            "title": "Returns the approximate number of members in the client group.",
+            "description": "Returns the approximate number of members in the client group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ClientGroups_GetMembersCount.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Maps_Generate": {
+            "main": "./lib/actions/Maps_Generate.js",
+            "title": "Generates the specified map.",
+            "description": "Generates the specified map.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Maps_Generate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "MachineGroups_ListByWorkspace": {
+            "main": "./lib/actions/MachineGroups_ListByWorkspace.js",
+            "title": "Returns all machine groups during the specified time interval.",
+            "description": "Returns all machine groups during the specified time interval.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/MachineGroups_ListByWorkspace.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "MachineGroups_Create": {
+            "main": "./lib/actions/MachineGroups_Create.js",
+            "title": "Creates a new machine group.",
+            "description": "Creates a new machine group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/MachineGroups_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "MachineGroups_Delete": {
+            "main": "./lib/actions/MachineGroups_Delete.js",
+            "title": "Deletes the specified Machine Group.",
+            "description": "Deletes the specified Machine Group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/MachineGroups_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "MachineGroups_Get": {
+            "main": "./lib/actions/MachineGroups_Get.js",
+            "title": "Returns the specified machine group as it existed during the specified time interval.",
+            "description": "Returns the specified machine group as it existed during the specified time interval.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/MachineGroups_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "MachineGroups_Update": {
+            "main": "./lib/actions/MachineGroups_Update.js",
+            "title": "Updates a machine group.",
+            "description": "Updates a machine group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/MachineGroups_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Machines_ListByWorkspace": {
+            "main": "./lib/actions/Machines_ListByWorkspace.js",
+            "title": "Returns a collection of machines matching the specified conditions.  The returned collection represents either machines that are active/live during the specified interval  of time (`live=true` and `startTime`/`endTime` are specified) or that are known to have existed at or  some time prior to the specified point in time (`live=false` and `timestamp` is specified).",
+            "description": "Returns a collection of machines matching the specified conditions.  The returned collection represents either machines that are active/live during the specified interval  of time (`live=true` and `startTime`/`endTime` are specified) or that are known to have existed at or  some time prior to the specified point in time (`live=false` and `timestamp` is specified).",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Machines_ListByWorkspace.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Machines_Get": {
+            "main": "./lib/actions/Machines_Get.js",
+            "title": "Returns the specified machine.",
+            "description": "Returns the specified machine.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Machines_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Machines_ListConnections": {
+            "main": "./lib/actions/Machines_ListConnections.js",
+            "title": "Returns a collection of connections terminating or originating at the specified machine",
+            "description": "Returns a collection of connections terminating or originating at the specified machine",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Machines_ListConnections.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Machines_GetLiveness": {
+            "main": "./lib/actions/Machines_GetLiveness.js",
+            "title": "Obtains the liveness status of the machine during the specified time interval.",
+            "description": "Obtains the liveness status of the machine during the specified time interval.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Machines_GetLiveness.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Machines_ListMachineGroupMembership": {
+            "main": "./lib/actions/Machines_ListMachineGroupMembership.js",
+            "title": "Returns a collection of machine groups this machine belongs to during the specified time interval.",
+            "description": "Returns a collection of machine groups this machine belongs to during the specified time interval.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Machines_ListMachineGroupMembership.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Machines_ListPorts": {
+            "main": "./lib/actions/Machines_ListPorts.js",
+            "title": "Returns a collection of live ports on the specified machine during the specified time interval.",
+            "description": "Returns a collection of live ports on the specified machine during the specified time interval.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Machines_ListPorts.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Ports_Get": {
+            "main": "./lib/actions/Ports_Get.js",
+            "title": "Returns the specified port. The port must be live during the specified time interval. If the port is not live during the interval, status 404 (Not Found) is returned.",
+            "description": "Returns the specified port. The port must be live during the specified time interval. If the port is not live during the interval, status 404 (Not Found) is returned.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Ports_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Ports_ListAcceptingProcesses": {
+            "main": "./lib/actions/Ports_ListAcceptingProcesses.js",
+            "title": "Returns a collection of processes accepting on the specified port",
+            "description": "Returns a collection of processes accepting on the specified port",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Ports_ListAcceptingProcesses.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Ports_ListConnections": {
+            "main": "./lib/actions/Ports_ListConnections.js",
+            "title": "Returns a collection of connections established via the specified port.",
+            "description": "Returns a collection of connections established via the specified port.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Ports_ListConnections.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Ports_GetLiveness": {
+            "main": "./lib/actions/Ports_GetLiveness.js",
+            "title": "Obtains the liveness status of the port during the specified time interval.",
+            "description": "Obtains the liveness status of the port during the specified time interval.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Ports_GetLiveness.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Machines_ListProcesses": {
+            "main": "./lib/actions/Machines_ListProcesses.js",
+            "title": "Returns a collection of processes on the specified machine matching the specified conditions. The returned collection represents either processes that are active/live during the specified interval  of time (`live=true` and `startTime`/`endTime` are specified) or that are known to have existed at or  some time prior to the specified point in time (`live=false` and `timestamp` is specified).        ",
+            "description": "Returns a collection of processes on the specified machine matching the specified conditions. The returned collection represents either processes that are active/live during the specified interval  of time (`live=true` and `startTime`/`endTime` are specified) or that are known to have existed at or  some time prior to the specified point in time (`live=false` and `timestamp` is specified).        ",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Machines_ListProcesses.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Processes_Get": {
+            "main": "./lib/actions/Processes_Get.js",
+            "title": "Returns the specified process.",
+            "description": "Returns the specified process.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Processes_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Processes_ListAcceptingPorts": {
+            "main": "./lib/actions/Processes_ListAcceptingPorts.js",
+            "title": "Returns a collection of ports on which this process is accepting",
+            "description": "Returns a collection of ports on which this process is accepting",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Processes_ListAcceptingPorts.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Processes_ListConnections": {
+            "main": "./lib/actions/Processes_ListConnections.js",
+            "title": "Returns a collection of connections terminating or originating at the specified process",
+            "description": "Returns a collection of connections terminating or originating at the specified process",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Processes_ListConnections.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Processes_GetLiveness": {
+            "main": "./lib/actions/Processes_GetLiveness.js",
+            "title": "Obtains the liveness status of the process during the specified time interval.",
+            "description": "Obtains the liveness status of the process during the specified time interval.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Processes_GetLiveness.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Summaries_GetMachines": {
+            "main": "./lib/actions/Summaries_GetMachines.js",
+            "title": "Returns summary information about the machines in the workspace.",
+            "description": "Returns summary information about the machines in the workspace.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Summaries_GetMachines.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

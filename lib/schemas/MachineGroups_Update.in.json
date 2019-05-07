@@ -1,0 +1,213 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "pattern": "[a-zA-Z0-9_-]+"
+        },
+        "workspaceName": {
+            "required": true,
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 63,
+            "pattern": "[a-zA-Z0-9_][a-zA-Z0-9_-]+[a-zA-Z0-9_]"
+        },
+        "machineGroupName": {
+            "required": true,
+            "type": "string",
+            "minLength": 36,
+            "maxLength": 36
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "description": "Resource model definition.",
+                            "properties": {
+                                "id": {
+                                    "description": "Resource identifier.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "Resource name.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "description": "Resource type.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                }
+                            },
+                            "x-ms-azure-resource": true,
+                            "type": "object"
+                        }
+                    ],
+                    "description": "Marker resource for the core Service Map resources",
+                    "discriminator": {
+                        "propertyName": "kind"
+                    },
+                    "properties": {
+                        "etag": {
+                            "description": "Resource ETAG.",
+                            "type": "string"
+                        },
+                        "kind": {
+                            "description": "Additional resource type qualifier.",
+                            "enum": [
+                                "machine",
+                                "process",
+                                "port",
+                                "clientGroup",
+                                "machineGroup"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "kind"
+                    ],
+                    "type": "object"
+                }
+            ],
+            "description": "A user-defined logical grouping of machines.",
+            "properties": {
+                "etag": {
+                    "description": "Resource ETAG.",
+                    "type": "string"
+                },
+                "properties": {
+                    "description": "Resource properties.",
+                    "properties": {
+                        "count": {
+                            "description": "Count of machines in this group. The value of count may be bigger than the number of machines in case of the group has been truncated due to exceeding the max number of machines a group can handle.",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "displayName": {
+                            "description": "User defined name for the group",
+                            "maxLength": 256,
+                            "minLength": 1,
+                            "type": "string"
+                        },
+                        "groupType": {
+                            "description": "Type of the machine group",
+                            "enum": [
+                                "unknown",
+                                "azure-cs",
+                                "azure-sf",
+                                "azure-vmss",
+                                "user-static"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "MachineGroupType"
+                            }
+                        },
+                        "machines": {
+                            "description": "References of the machines in this group. The hints within each reference do not represent the current value of the corresponding fields. They are a snapshot created during the last time the machine group was updated.",
+                            "items": {
+                                "allOf": [
+                                    {
+                                        "description": "Represents a reference to another resource.",
+                                        "discriminator": {
+                                            "propertyName": "kind"
+                                        },
+                                        "properties": {
+                                            "id": {
+                                                "description": "Resource URI.",
+                                                "type": "string"
+                                            },
+                                            "kind": {
+                                                "description": "Specifies the sub-class of the reference.",
+                                                "enum": [
+                                                    "ref:machine",
+                                                    "ref:machinewithhints",
+                                                    "ref:process",
+                                                    "ref:port",
+                                                    "ref:onmachine",
+                                                    "ref:clientgroup"
+                                                ],
+                                                "type": "string"
+                                            },
+                                            "name": {
+                                                "description": "Resource name.",
+                                                "readOnly": true,
+                                                "type": "string"
+                                            },
+                                            "type": {
+                                                "description": "Resource type qualifier.",
+                                                "readOnly": true,
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "id",
+                                            "kind"
+                                        ],
+                                        "type": "object"
+                                    }
+                                ],
+                                "description": "A machine reference with a hint of the machine's name and operating system.",
+                                "properties": {
+                                    "properties": {
+                                        "description": "Machine reference with name and os hints.",
+                                        "properties": {
+                                            "displayNameHint": {
+                                                "description": "Last known display name.",
+                                                "readOnly": true,
+                                                "type": "string"
+                                            },
+                                            "osFamilyHint": {
+                                                "description": "Last known operating system family.",
+                                                "readOnly": true,
+                                                "enum": [
+                                                    "unknown",
+                                                    "windows",
+                                                    "linux",
+                                                    "solaris",
+                                                    "aix"
+                                                ],
+                                                "type": "string",
+                                                "x-ms-enum": {
+                                                    "modelAsString": false,
+                                                    "name": "OperatingSystemFamily"
+                                                }
+                                            }
+                                        },
+                                        "type": "object",
+                                        "x-ms-client-flatten": true
+                                    }
+                                },
+                                "x-ms-discriminator-value": "ref:machinewithhints",
+                                "type": "object"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "required": [
+                        "displayName"
+                    ],
+                    "type": "object",
+                    "x-ms-client-flatten": true
+                }
+            },
+            "x-ms-discriminator-value": "machineGroup",
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

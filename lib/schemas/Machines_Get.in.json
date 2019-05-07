@@ -1,0 +1,38 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "pattern": "[a-zA-Z0-9_-]+"
+        },
+        "workspaceName": {
+            "required": true,
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 63,
+            "pattern": "[a-zA-Z0-9_][a-zA-Z0-9_-]+[a-zA-Z0-9_]"
+        },
+        "machineName": {
+            "required": true,
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 64
+        },
+        "timestamp": {
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
